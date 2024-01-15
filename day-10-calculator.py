@@ -48,7 +48,8 @@ def main():
 
         print(f"{num1} {operation_symbol} {num2} = {answer}")
 
-        continue_calculating = input(f"Type 'y' to continue calculating with {answer}, or type 'n' to start a new calculation: ")
+        continue_calculating = \
+            input(f"Type 'y' to continue calculating with {answer}, or type 'n' to start a new calculation: ")
         if continue_calculating == 'n':
             calculator_on = False
             main()

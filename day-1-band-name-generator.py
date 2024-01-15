@@ -6,5 +6,6 @@ def main():
 
     print(f"Your band name could be {input_city} {input_pet}")
 
+
 if __name__ == '__main__':
     main()

@@ -17,10 +17,12 @@ def main():
     direction = input()
 
     if direction == "left":
-        print("You've come to a lake. There is an island in the middle of the lake. Type 'wait' to wait for a boat. Type 'swim' to swim across.")
+        print("You've come to a lake. There is an island in the middle of the lake. "
+              "Type 'wait' to wait for a boat. Type 'swim' to swim across.")
         lake = input()
         if lake == "wait":
-            print("You arrive at the island unharmed. There is a house with 3 doors. One red, one yellow, and one blue. Which color do you choose?")
+            print("You arrive at the island unharmed."
+                  " There is a house with 3 doors. One red, one yellow, and one blue. Which color do you choose?")
             door = input()
             if door == "red":
                 print("It's a room full of fire. Game Over.")
@@ -34,6 +36,9 @@ def main():
             print("You get attacked by an angry trout. Game Over.")
     else:
         print("You fell into a hole. Game Over.")
+
+    print("Thanks for playing!")
+
 
 if __name__ == "__main__":
     main()
