@@ -11,6 +11,7 @@ def main():
     print("Welcome to the Number Guessing Game!")
     print("I'm thinking of a number between 1 and 100.")
     number = randint(1, 100)
+    attempts = 0
 
     while True:
         difficulty = input("Choose a difficulty. Type 'easy' or 'hard': ")

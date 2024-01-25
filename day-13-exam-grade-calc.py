@@ -3,7 +3,6 @@ def main():
     total_marks = int(input("Enter the total marks for the exam: "))
     marks_obtained = int(input("Enter the marks obtained: "))
     percentage = marks_obtained / total_marks * 100
-    grade = None
 
     if percentage >= 90:
         grade = 'A'

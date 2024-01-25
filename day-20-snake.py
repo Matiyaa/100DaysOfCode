@@ -94,6 +94,7 @@ def main():
     score = ScoreBoard()
 
     screen.listen()
+
     screen.onkey(key='Up', fun=snake.up)
     screen.onkey(key='w', fun=snake.up)
 
@@ -113,7 +114,7 @@ def main():
         time.sleep(0.1)
         snake.move()
 
-        if snake.head.distance(food) < 15:
+        if snake.head.distance(food) <= 15:
             score.update_score()
             snake.extend()
             food.refresh()
@@ -122,8 +123,8 @@ def main():
             game_on = False
             score.game_over()
 
-        for segment in snake.segments[1:]:
-            if snake.head.distance(segment) < 10:
+        for segment_ in snake.segments[1:]:
+            if snake.head.distance(segment_) < 10:
                 game_on = False
                 score.game_over()
 
