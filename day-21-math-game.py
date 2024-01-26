@@ -10,13 +10,14 @@ def main():
     for i in range(0, 10):
         num1 = randint(1, 10)
         num2 = randint(1, 10)
-        answer = num1 + num2
-        user_answer = int(input(f"{num1} + {num2} = "))
+        answer = num1 * num2
+        user_answer = int(input(f"{num1} x {num2} = "))
         if user_answer == answer:
             score += 1
             print("Correct!")
         else:
             print("Incorrect!")
+            print(f"The correct answer is {answer}.")
 
     print(f"You got {score} out of 10 questions correct.")
 
