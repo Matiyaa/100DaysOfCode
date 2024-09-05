@@ -1,5 +1,2 @@
-# Ignore email-app-pass.txt
-email-app-pass.txt
-
-# Ignore rain-alert-pass.txt
-rain-alert-pass.txt
+# Ignore .env
+.env

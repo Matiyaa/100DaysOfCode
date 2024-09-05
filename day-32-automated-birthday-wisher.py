@@ -4,14 +4,15 @@ import random
 import smtplib
 
 import pandas as pd
+from dotenv import load_dotenv
+
+load_dotenv()
 
 target_email = ''
 letter_templates = 'day-32-data/letter_templates'
 
-with open('email-app-pass.txt') as file:
-    lines = file.readlines()
-    my_email = lines[0].strip()
-    my_password = lines[1].strip()
+my_email = os.getenv('MY_EMAIL')
+my_password = os.getenv('MY_PASS')
 
 if target_email == '':
     target_email = my_email

@@ -1,12 +1,15 @@
+import os
+
 import requests
+from dotenv import load_dotenv
 from twilio.rest import Client
 
-with open("rain-alert-pass.txt") as file:
-    lines = file.readlines()
-    API_KEY = lines[0].strip()
-    account_sid = lines[1].strip()
-    auth_token = lines[2].strip()
-    phone_number = lines[3].strip()
+load_dotenv()
+
+API_KEY = os.getenv("WEATHER_API_KEY")
+account_sid = os.getenv("TWILIO_ACCOUNT_SID")
+auth_token = os.getenv("TWILIO_AUTH_TOKEN")
+phone_number = os.getenv("MY_PHONE_NUMBER")
 
 client = Client(account_sid, auth_token)
 
@@ -40,7 +43,7 @@ def main():
     print(weather.umbrella_alert())
 
     message = client.messages.create(
-        from_='+14153603935',
+        from_=os.getenv("TWILIO_PHONE_NUMBER"),
         body=weather.umbrella_alert(),
         to=phone_number,
     )
