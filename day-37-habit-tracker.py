@@ -8,6 +8,7 @@ load_dotenv()
 PIXELA_ENDPOINT = os.getenv("PIXELA_ENDPOINT")
 PIXELA_TOKEN = os.getenv("PIXELA_TOKEN")
 PIXELA_USERNAME = os.getenv("PIXELA_USERNAME")
+TODAY = datetime.now().strftime("%Y%m%d")
 
 
 def create_user(token, username):
@@ -39,9 +40,8 @@ def create_graph(token, username):
 
 def add_pixel(token, username, quantity):
     pixel_endpoint = f"{PIXELA_ENDPOINT}/{username}/graphs/graph1"
-    today = datetime.now().strftime("%Y%m%d")
     pixel_config = {
-        "date": today,
+        "date": TODAY,
         "quantity": quantity
     }
     headers = {
@@ -51,10 +51,40 @@ def add_pixel(token, username, quantity):
     print(response.text)
 
 
-if __name__ == "__main__":
-    if input("Do you want to create a user [y/n]? ") in ("yes", "y"):
+def update_pixel(token, username, quantity):
+    pixel_endpoint = f"{PIXELA_ENDPOINT}/{username}/graphs/graph1/{TODAY}"
+    pixel_config = {
+        "quantity": quantity
+    }
+    headers = {
+        "X-USER-TOKEN": token
+    }
+    response = requests.put(url=pixel_endpoint, json=pixel_config, headers=headers)
+    print(response.text)
+
+
+def delete_pixel(token, username):
+    pixel_endpoint = f"{PIXELA_ENDPOINT}/{username}/graphs/graph1/{TODAY}"
+    headers = {
+        "X-USER-TOKEN": token
+    }
+    response = requests.delete(url=pixel_endpoint, headers=headers)
+    print(response.text)
+
+
+def type_of_action(action):
+    if action == "create_user":
         create_user(PIXELA_TOKEN, PIXELA_USERNAME)
-        if input("Do you want to create a graph [y/n]? ") in ("yes", "y"):
-            create_graph(PIXELA_TOKEN, PIXELA_USERNAME)
-    if input("Do you want to add a pixel [y/n]? ") in ("yes", "y"):
+    elif action == "create_graph":
+        create_graph(PIXELA_TOKEN, PIXELA_USERNAME)
+    elif action == "add_pixel":
         add_pixel(PIXELA_TOKEN, PIXELA_USERNAME, quantity=input("How many lines of code did you write today? "))
+    elif action == "update_pixel":
+        update_pixel(PIXELA_TOKEN, PIXELA_USERNAME, quantity=input("How many lines of code did you write today? "))
+    elif action == "delete_pixel":
+        delete_pixel(PIXELA_TOKEN, PIXELA_USERNAME)
+
+
+if __name__ == "__main__":
+    type_of_action(
+        input("What would you like to do? (create_user, create_graph, add_pixel, update_pixel, delete_pixel): "))
